@@ -5,11 +5,11 @@ class DirLister:
     def __init__(self,):
         pass
 
-    def show_dir(self, dir: str):
+    def show_dir(self, dir: str, level: str="--"):
         # print("show dir ", dir)
         path = os.path.normpath(dir)
         # print(path, os.path.isdir(path))
-        # print(r'--', end='')
+        print(level, end='')
         if os.path.isdir(path):
             # print(path)
             # print(r'--', end='')
@@ -17,10 +17,10 @@ class DirLister:
             dirs = os.listdir(path)
             for directory in dirs:
                 new_path = os.path.join(path, directory)
-                print(r'--', end='')
-                self.show_dir(str(new_path))
+                # print(level, end='')
+                self.show_dir(str(new_path), (level + "--"))
         elif os.path.isfile(path):
-            print(r'--', end='')
+            # print(level, end='')
             # print(path)
             print(os.path.basename(path))
         else:
