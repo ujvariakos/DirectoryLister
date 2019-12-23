@@ -5,22 +5,26 @@ class DirLister:
     def __init__(self,):
         pass
 
-    def showDir(self, dir: str):
+    def show_dir(self, dir: str):
+        # print("show dir ", dir)
         path = os.path.normpath(dir)
-        print(r'--', sep=' ', end='', flush=True)
+        # print(path, os.path.isdir(path))
+        # print(r'--', end='')
         if os.path.isdir(path):
-
-            print(path)
+            # print(path)
+            # print(r'--', end='')
+            print(os.path.basename(path))
             dirs = os.listdir(path)
             for directory in dirs:
                 new_path = os.path.join(path, directory)
-                print(r'--', sep=' ', end='', flush=True)
-                self.showDir(str(new_path))
+                print(r'--', end='')
+                self.show_dir(str(new_path))
         elif os.path.isfile(path):
-            print(r'-- ', sep=' ', end='', flush=True)
-            print(path)
+            print(r'--', end='')
+            # print(path)
+            print(os.path.basename(path))
         else:
             raise ValueError("Invalid directory")
 
 dir_lister = DirLister()
-dir_lister.showDir(r'd:/PythonProjects/test0/')
+dir_lister.show_dir(r'd:/PythonProjects/test0/')
